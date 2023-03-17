@@ -1,5 +1,6 @@
 const conn = require('../config/database')
 
+
 const controller = {}
 
 controller.create = async (req, res) =>{
@@ -8,7 +9,7 @@ controller.create = async (req, res) =>{
         await conn.query(`
         insert into comments (comment)
         value ($1)
-        `, [req.body.comment])
+        `, [req.sanitize(req.body.comment)])
 
         // Redireciona de volta para o formulário
         res.redirect('/')
