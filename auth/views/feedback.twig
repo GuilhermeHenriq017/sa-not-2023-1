@@ -47,5 +47,27 @@
       {% endif %}
     </h1>
   <span>{{message}}</span>
-  </div
->{% endblock %}
+  </div>
+
+  {% if cookies %}
+  <div>
+    <h2>Cookies da página</h2>
+    <pre>{{cookies}}</pre>
+  </div>
+
+  <script>
+    const displayCookies = document.getElementById('display-cookies')
+    const docCookie = document.cookie
+    if(docCookie) {
+      displayCookies.style.visibility = 'visible'
+      const cookies = document.getElementById('cookies')
+      cookies.textContent = docCookie
+    }
+  </script>
+
+  {% if redirectUrl %}
+    <script>
+      setTimeout(() => window.location.href = '{{redirectUrl}}' , 3000 )
+    </script>
+  {% endif %}
+{% endblock %}
